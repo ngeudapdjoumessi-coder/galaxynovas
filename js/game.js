@@ -14,7 +14,6 @@ let player = null;
 document.getElementById("playBtn").addEventListener("click", () => {
 
     document.getElementById("mainMenu").classList.add("hidden");
-
     document.getElementById("hud").classList.remove("hidden");
 
     startNewGame();
@@ -22,7 +21,7 @@ document.getElementById("playBtn").addEventListener("click", () => {
 });
 
 // Nouvelle partie
-function startNewGame(){
+function startNewGame() {
 
     player = new Player();
 
@@ -31,30 +30,36 @@ function startNewGame(){
     GAME.coins = CONFIG.START_COINS;
     GAME.lives = CONFIG.START_LIVES;
 
+    // Réinitialisation
+    enemies.length = 0;
+    bullets.length = 0;
+    effects.length = 0;
+
     startGame();
 
 }
 
 // Mise à jour
+function updateGame(delta) {
 
-function updateGame(delta){
-
-    if(player){
-
+    if (player) {
         player.update(delta);
-
     }
+
+    // Mise à jour des ennemis
+    updateEnemies(delta);
 
 }
 
-// Dessin
+// Affichage
+function renderGame() {
 
-function renderGame(){
-
-    if(player){
-
+    // Joueur
+    if (player) {
         player.draw();
-
     }
+
+    // Ennemis
+    drawEnemies();
 
 }
