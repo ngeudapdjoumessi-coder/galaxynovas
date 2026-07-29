@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Galaxy Nova</title>
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/mobile.css">
+<link rel="stylesheet" href="css/desktop.css">
+
+</head>
+
+<body>
+
+<div id="loadingScreen">
+
+<h1>GALAXY NOVA</h1>
+
+<p>Chargement...</p>
+
+<div class="loadingBar">
+<div id="loadingFill"></div>
+</div>
+
+</div>
+
+<div id="mainMenu" class="hidden">
+
+<h1>GALAXY NOVA</h1>
+
+<button id="playBtn">▶ Jouer</button>
+
+<button id="continueBtn">💾 Continuer</button>
+
+<button id="hangarBtn">🚀 Hangar</button>
+
+<button id="shopBtn">🛒 Boutique</button>
+
+<button id="settingsBtn">⚙ Paramètres</button>
+
+</div>
+
+<div id="hud" class="hidden">
+
+<div id="coins">🪙 50</div>
+
+<div id="lives">❤️❤️❤️</div>
+
+<div id="level">Niveau 1</div>
+
+</div>
+
+<canvas id="gameCanvas"></canvas>
+
+<div id="touchControls">
+
+<div id="joystick">
+<div id="stick"></div>
+</div>
+
+<button id="fireButton">🔥</button>
+
+<button id="specialButton">⚡</button>
+
+</div>
+
+<script src="js/engine.js"></script>
+<script src="js/game.js"></script>
+<script src="js/player.js"></script>
+<script src="js/enemy.js"></script>
+<script src="js/boss.js"></script>
+<script src="js/drone.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/save.js"></script>
+<script src="js/ui.js"></script>
+
+<script>
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+loadingScreen.classList.add("hidden");
+
+mainMenu.classList.remove("hidden");
+
+},1500);
+
+});
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register("service-worker.js");
+
+}
+
+</script>
+
+</body>
+</html>
