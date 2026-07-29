@@ -116,4 +116,67 @@ function drawStars() {
 
     }
 
+}// Nettoyage
+
+function clearScreen() {
+
+    ctx.fillStyle = "#000814";
+
+    ctx.fillRect(
+
+        0,
+
+        0,
+
+        canvas.width,
+
+        canvas.height
+
+    );
+
 }
+
+// Boucle principale
+
+function loop(timestamp) {
+
+    if (!GAME.running)
+        return;
+
+    const delta = timestamp - GAME.lastFrame;
+
+    GAME.lastFrame = timestamp;
+
+    clearScreen();
+
+    updateStars();
+
+    drawStars();
+
+    if (typeof updateGame === "function")
+        updateGame(delta);
+
+    if (typeof renderGame === "function")
+        renderGame();
+
+    requestAnimationFrame(loop);
+
+}
+
+function startGame() {
+
+    GAME.running = true;
+
+    GAME.lastFrame = performance.now();
+
+    requestAnimationFrame(loop);
+
+}
+
+function stopGame() {
+
+    GAME.running = false;
+
+}
+
+console.log("Galaxy Nova Engine chargé.");
